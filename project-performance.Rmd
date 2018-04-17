@@ -1,0 +1,148 @@
+---
+title: "Project Performance"
+author: "Author: Rajat Jain"
+date: "Last Updated: `r Sys.Date()`"
+time: "Time Spent: 24 Hrs"
+output:
+  html_document:
+    theme: lumen
+    toc: yes
+    toc_float: yes
+  pdf_document:
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r libraries, echo=FALSE, warning=FALSE}
+# Scatter plots with ggplot
+library(ggplot2)
+# Classification Tree with rpart
+library(rpart)
+
+# Load product usage data set from CSV file.
+usage <- read.csv("photographer_classifier/data/usage_data.csv")
+```
+
+## Data Analyses
+
+### Data Description
+We have first 7-day product usage data from Adobe photography plan users. Data is a CSV file containing `r nrow(usage)` rows. It has following columns:
+
+* **member_guid:**   Customer Identifier.
+* **class:**         Output Class - PHOTOGRAPHER or OTHER.
+* **lr_cc_usage:**   # of times customer used Lightroom CC product in first 7-days.
+* **lr_cl_usage:**   # of times customer used Lightroom Classic product in first 7-days.
+* **lr_mo_usage:**   # of times customer used Lightroom Mobile product in first 7-days.
+* **storage_usage:** # of times customer accessed Cloud Storage in first 7-days.
+* **ps_usage:**      # of times customer used Photoshop product in first 7-days.
+* **stock_usage:**   # of times customer searched for a Stock Image in first 7-days.
+
+Detailed summary of the data:
+```{r usage, echo=FALSE}
+# Summarize Usage Data. First column is ID, ignore summarizing it.
+summary(usage[,-1])
+```
+
+### Training & Test Data
+```{r split, echo=FALSE}
+smp_size <- floor(0.75 * nrow(usage))
+# set the seed to make your partition reproductible
+set.seed(123)
+train_ind <- sample(seq_len(nrow(usage)), size = smp_size)
+train <- usage[train_ind,]
+test <- usage[-train_ind,]
+```
+We have split available usage data into training data (75% - `r nrow(train)` records) and test data(25% - `r nrow(test)` records).
+
+Summary of Training data
+```{r, echo=FALSE}
+# First column is ID, ignore summarizing it.
+summary(train[,-1])
+```
+Summary of Test data
+```{r, echo=FALSE}
+# First column is ID, ignore summarizing it.
+summary(test[,-1])
+```
+
+### Data Visualization
+```{r lib, echo=FALSE}
+plot <-ggplot(data=train, aes(x=member_guid, color=class)) +
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
+```
+Generating scatter-plots for all the features available in the test data in order to identify obviously evident relationships, if any.
+
+1. **Lightroom CC Usage:**
+```{r lrcc, echo=FALSE}
+plot + geom_point(aes(y=lr_cc_usage), size=1)
+```
+
+2. **Lightroom Classic Usage:**
+```{r lrcl, echo=FALSE}
+plot + geom_point(aes(y=lr_cl_usage), size=1)
+```
+
+3. **Lightroom Mobile Usage:**
+```{r lrmo, echo=FALSE}
+plot + geom_point(aes(y=lr_mo_usage), size=1)
+```
+
+4. **Photoshop Usage:**
+```{r ps, echo=FALSE}
+plot + geom_point(aes(y=ps_usage), size=1)
+```
+
+5. **Cloud Storage Access:**
+```{r strg, echo=FALSE}
+plot + geom_point(aes(y=storage_usage), size=1)
+```
+
+6. **Stock Image Search:**
+```{r stk, echo=FALSE}
+plot + geom_point(aes(y=stock_usage), size=1)
+```
+
+
+## Simple Model
+As the next step, we build a simplistic model to establish a baseline. In this case we will build a simple decision tree classifier.
+```{r tree}
+# grow tree 
+model <- rpart(class ~ lr_cc_usage + lr_cl_usage + storage_usage + ps_usage + stock_usage, 
+             method="class", data=train)
+```
+
+Summarize trained model.
+```{r treesummary}
+printcp(model) # display the results 
+plotcp(model) # visualize cross-validation results 
+summary(model) # detailed summary of splits
+```
+
+Plot tree.
+```{r treeplot}
+plot(model, uniform=TRUE, 
+     main="Classification Tree for Photographers")
+text(model, use.n=TRUE, all=TRUE, cex=.8)
+```
+
+
+## Prediction (Testing)
+Once we have the model built on the training data, let's test in by predicting the output class on the test data.
+```{r test}
+pred <- predict(model, newdata=test, type="class")
+```
+
+
+## Performance
+Based on the measure defined in the FPS, we will use classification accuracy as our performance measure.
+
+**Observed Accuracy:** `r paste(round(mean(pred == test[ , 2])*100, digits=2), "%")`
+
+Since the observed accuracy is below the desired accuracy of 70%, we will have to optimize the model performance, either by:
+a. building more complex models, or
+b. training with more features. This is possible. However will require more effort on feature generation and more domain knowledge.
