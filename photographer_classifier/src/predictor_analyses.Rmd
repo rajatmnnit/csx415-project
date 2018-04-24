@@ -1,0 +1,106 @@
+---
+title: "Predictor Analyses"
+author: "Author: Rajat Jain"
+date: "Last Updated: `r Sys.Date()`"
+time: "Time Spent: 2 Hrs"
+output:
+  pdf_document:
+    toc: yes
+  html_document:
+    theme: lumen
+    toc: yes
+    toc_float: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r libraries, message=FALSE, warning=FALSE, include=FALSE, results='hide'}
+setwd("/Users/rajatj/csx415/csx415-project/photographer_classifier")
+
+# Project Template
+library(ProjectTemplate)
+# Load product usage data set from CSV file.
+load.project()
+
+# Scatter plots with ggplot
+library(ggplot2)
+# Classification Tree with rpart
+library(rpart)
+```
+
+Generating scatter-plots for all the features available in the test data in order to identify obviously evident relationships, if any.
+
+```{r pred, echo=FALSE, message=FALSE, warning=FALSE}
+plot <- ggplot(data=usage.data, aes(x=member_guid, color=class)) +
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
+```
+
+### Lightroom CC Usage
+```{r lrcc, echo=FALSE, message=FALSE, warning=FALSE}
+lr_cc <- plot + 
+  geom_point(aes(y=lr_cc_usage), size=1) + 
+  labs( title="Lightroom CC Usage Scatter Plot")
+
+ggsave(file.path('../graphs', 'lr_cc.pdf'))
+
+lr_cc
+```
+
+### Lightroom Classic Usage
+```{r lrcl, echo=FALSE, message=FALSE, warning=FALSE}
+lr_cl <- plot + 
+  geom_point(aes(y=lr_cl_usage), size=1) + 
+  labs( title="Lightroom Classic Usage Scatter Plot")
+
+ggsave(file.path('../graphs', 'lr_cl.pdf'))
+
+lr_cl
+```
+
+### Lightroom Mobile Usage
+```{r lrmo, echo=FALSE, message=FALSE, warning=FALSE}
+lr_mo <- plot + 
+  geom_point(aes(y=lr_mo_usage), size=1) + 
+  labs( title="Lightroom Mobile Usage Scatter Plot")
+
+ggsave(file.path('../graphs', 'lr_mo.pdf'))
+
+lr_mo
+```
+
+### Photoshop Usage
+```{r ps, echo=FALSE, message=FALSE, warning=FALSE}
+ps <- plot + 
+  geom_point(aes(y=ps_usage), size=1) + 
+  labs( title="Photoshop Usage Scatter Plot")
+
+ggsave(file.path('../graphs', 'ps.pdf'))
+
+ps
+```
+
+### Cloud Storage Access
+```{r strg, echo=FALSE, message=FALSE, warning=FALSE}
+strg <- plot +
+  geom_point(aes(y=storage_usage), size=1) + 
+  labs( title="Cloud Storage Access Scatter Plot")
+
+ggsave(file.path('../graphs', 'strg.pdf'))
+
+strg
+```
+
+### Stock Image Search
+```{r stk, echo=FALSE, message=FALSE, warning=FALSE}
+stk <- plot + 
+  geom_point(aes(y=stock_usage), size=1) + 
+  labs( title="Stock Image Search Scatter Plot")
+
+ggsave(file.path('../graphs', 'stk.pdf'))
+
+stk
+```
