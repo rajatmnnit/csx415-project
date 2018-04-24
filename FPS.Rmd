@@ -4,12 +4,12 @@ author: 'Author: Rajat Jain'
 date: 'Last Updated: `r Sys.Date()`'
 time: 'Time Spent: 8 Hrs'
 output:
+  pdf_document:
+    toc: yes
   html_document:
     theme: lumen
     toc: yes
     toc_float: yes
-  pdf_document:
-    toc: yes
 ---
 
 ```{r, echo=FALSE}
@@ -160,7 +160,7 @@ Plans to iterate for next version, if any. TBD.
 ```
 The ultimate desired business impact from this project is the lift in customer's engagement with Adobe products and eventual lift in retention rates. However, both of these are long term measure and may not be tangible in short term. 
 
-The success of this project will be measured by the accuracy of classifying “true” photographers among the paid photography plan customer base. We expect to achieve 70% or more accuracy to be successful.
+The success of this project will be measured by the accuracy of classifying “true” photographers among the paid photography plan customer base. The empirical distribution of “true” photographers among the paid photography plan customer base is roughly 50%, this project should provide better results than randomly considering customers as “true” photographers. We expect to achieve 70% or more accuracy to be considered successful.
 &nbsp;
 
 ## 9. Risks
