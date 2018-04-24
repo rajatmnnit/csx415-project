@@ -9,4 +9,6 @@
 7 | Photoshop Usage | https://github.com/rajatmnnit/csx415-project/blob/master/photographer_classifier/graphs/ps.pdf | Ps Usage - Scatter Plot
 8 | Cloud Storage Access | https://github.com/rajatmnnit/csx415-project/blob/master/photographer_classifier/graphs/strg.pdf | Cloud Storage Access - Scatter Plot
 9 | Stock Image Search | https://github.com/rajatmnnit/csx415-project/blob/master/photographer_classifier/graphs/stk.pdf | Stock Image Search - Scatter Plot
+10 | Liner Model Performance | https://github.com/rajatmnnit/csx415-project/blob/master/photographer_classifier/src/model-performance-linear.pdf | Model Performance Document - Logistic Regression Model
+11 | Tree Model Performance | https://github.com/rajatmnnit/csx415-project/blob/master/photographer_classifier/src/model-performance-rpart.pdf | Model Performance Document - Tree Model
 
