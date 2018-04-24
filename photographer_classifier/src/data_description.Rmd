@@ -1,0 +1,71 @@
+---
+title: "Data Description"
+author: "Author: Rajat Jain"
+date: "Last Updated: `r Sys.Date()`"
+time: "Time Spent: 2 Hrs"
+output:
+  pdf_document:
+    toc: yes
+  html_document:
+    theme: lumen
+    toc: yes
+    toc_float: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r libraries, message=FALSE, warning=FALSE, include=FALSE, results='hide'}
+setwd("/Users/rajatj/csx415/csx415-project/photographer_classifier")
+
+# Project Template
+library(ProjectTemplate)
+# Load product usage data set from CSV file.
+load.project()
+
+# Scatter plots with ggplot
+library(ggplot2)
+# Classification Tree with rpart
+library(rpart)
+```
+
+### Schema
+We have first 7-day product usage data from Adobe photography plan users. Data is a CSV file containing `r nrow(usage.data)` rows. It has following columns:
+
+* **member_guid:**   Customer Identifier.
+* **class:**         Output Class - PHOTOGRAPHER or OTHER.
+* **lr_cc_usage:**   # of times customer used Lightroom CC product in first 7-days.
+* **lr_cl_usage:**   # of times customer used Lightroom Classic product in first 7-days.
+* **lr_mo_usage:**   # of times customer used Lightroom Mobile product in first 7-days.
+* **storage_usage:** # of times customer accessed Cloud Storage in first 7-days.
+* **ps_usage:**      # of times customer used Photoshop product in first 7-days.
+* **stock_usage:**   # of times customer searched for a Stock Image in first 7-days.
+
+
+### Data Summary
+```{r usage, echo=FALSE}
+# Summarize Usage Data. First column is ID, ignore summarizing it.
+summary(usage.data[,-1])
+```
+
+
+### Distribution of Class Labels
+The bar chart below shows the distrubution of class labels in the input data (in absolute number of records).
+```{r labels, message=FALSE, echo=FALSE}
+label_distribution <- ggplot(data=usage.data, aes(x=class, fill=class)) +
+  geom_bar(stat='count') + 
+  labs( title="Distribution of Class Labels")
+ggsave(file.path('../graphs', 'label_distribution.pdf'))
+
+label_distribution
+```
+
+It contains **`r round(100 * nrow(usage.data[usage.data$class == "PHOTOGRAPHER",]) / nrow(usage.data), digits=1)`%** records classfied as "PHOTOGRAPHER" class and `r round(100 * nrow(usage.data[usage.data$class == "OTHER",]) / nrow(usage.data), digits=1)`% records in "OTHER" class.
+
+
+### Binomial Test
+Now we run Binomial Test on this data.
+```{r binomial}
+binom.test(nrow(usage.data[usage.data[,2] == "PHOTOGRAPHER",]), nrow(usage.data))
+```
