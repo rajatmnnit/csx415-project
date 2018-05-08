@@ -36,3 +36,4 @@ vignettes/*.pdf
 # Files & Directories created acyomatically by OSX Filesystem
 .DS_Store
 **/.DS_Store/
+.Rproj.user
