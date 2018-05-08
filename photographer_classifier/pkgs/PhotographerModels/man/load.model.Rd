@@ -2,10 +2,16 @@
 % Please edit documentation in R/model.R
 \name{load.model}
 \alias{load.model}
-\title{Load the model corresponding to the given argument.}
+\title{Load the classification model.}
 \usage{
-load.model(mtype)
+load.model(mtype = "gbm")
+}
+\arguments{
+\item{mtype}{Type of the model to be returned. Valid value [svm | rf | gbm]. Defaults to the highest accuracy gbm model.}
+}
+\value{
+a caret::train binary classification model object trained using specified model types.
 }
 \description{
-Takes in a model type. Valid model types are : linearsvm, gbm, ...
+Loads a pre-trained persistent binary classification model to classify customers as "PHOTOGRAPHERS" or "OTHERS".
 }
