@@ -1,0 +1,100 @@
+---
+title: "Gradient Boosted Model"
+author: 'Author: Rajat Jain'
+date: 'Last Updated: `r Sys.Date()`'
+output:
+  pdf_document:
+    toc: yes
+  html_document:
+    theme: lumen
+    toc: yes
+    toc_float: yes
+time: 'Time Spent: 2 Hr'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r libraries, message=FALSE, warning=FALSE, include=FALSE, results='hide'}
+setwd("/Users/rajatj/csx415/csx415-project/photographer_classifier")
+
+# Project Template
+library(ProjectTemplate)
+# Load product usage data set from CSV file.
+load.project()
+
+library(caret)
+library(pROC)
+
+# setup the doParallel
+library(doParallel)
+cl <- makeCluster(detectCores())
+registerDoParallel(cl)
+```
+
+
+## Setting Training Control Params
+Using 10-fold Cross Validation with 10 repeatitions.
+```{r trainctrl}
+ctrl <- trainControl(method="repeatedcv",
+                     number=10,
+                     repeats=10,
+                     classProbs=TRUE,
+                     savePredictions=TRUE,
+                     allowParallel=TRUE)
+set.seed(123)
+```
+
+
+## Training - Gradient Boosted Tree Model
+Caret is Awesome!
+```{r model}
+fit <- train(class ~ lr_cc_usage + lr_cl_usage + storage_usage + ps_usage + stock_usage,
+             data=usage.data, method = "gbm", trControl = ctrl)
+```
+
+Summarize trained model.
+```{r modelsummary, echo=FALSE}
+fit
+```
+
+```{r modelsave, echo=FALSE}
+# Save model object for future use.
+saveRDS(fit, "../pkgs/PhotographerModels/data/gbm.rds")
+```
+
+
+## Performance
+Based on the measure defined in the FPS, we will use classification accuracy as our performance measure.
+
+### Confusion Matrix
+```{r confusion, echo=FALSE}
+#confusionMatrix(factor(pred), factor(test$class), positive="PHOTOGRAPHER")
+confusionMatrix(fit, positive="PHOTOGRAPHER")
+```
+
+### ROC Curve
+```{r roc, echo=FALSE}
+roc <- plot.roc(fit$pred$obs, fit$pred$PHOTOGRAPHER)
+roc
+```
+
+### Accuracy
+```{r accuracy, echo=FALSE}
+accuracy <- round(100*max(fit$results$Accuracy), digits=2)
+performance <- ifelse(accuracy >= 70, 'Satisfactory', 'Not Satisfactory')
+
+kappa <- round(max(fit$results$Kappa), digits=2)
+```
+
+* Kohen's Kappa: `r kappa`
+* Observed Accuracy : `r paste0(accuracy, "%")`
+* Desired accuracy : 70%
+* Performance is `r performance`.
+
+
+```{r teardown, message=FALSE, warning=FALSE, include=FALSE, results='hide'}
+# stop the doParallel and release resources at the very end
+stopCluster(cl)
+```
