@@ -7,12 +7,12 @@
 classify(data, mtype = "gbm")
 }
 \arguments{
-\item{data}{New data with structure [].}
+\item{data}{Data frame containing new data with structure [member_guid, lr_cc_usage, lr_cl_usage, lr_mo_usage, storage_usage, ps_usage, stock_usage].}
 
-\item{mtype}{Type of the model to be returned. Valid value [svm | rf | gbm]. Defaults to the highest accuracy gbm model.}
+\item{mtype}{Type of the model to be used for classification. Valid value [svm | rf | gbm]. Defaults to the highest accuracy gbm model.}
 }
 \value{
-a caret::train binary classification model object trained using specified model types.
+a data frame of the format [member_guid, class], where "class" is the predicted class from model for the corresponding member_guid.
 }
 \description{
 Classify new customers as "PHOTOGRAPHERS" or "OTHERS" by scorin against a pre-trained persistent binary classification model.
