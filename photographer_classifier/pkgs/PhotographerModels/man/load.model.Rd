@@ -15,3 +15,8 @@ a caret::train binary classification model object trained using specified model 
 \description{
 Loads a pre-trained persistent binary classification model to classify customers as "PHOTOGRAPHERS" or "OTHERS".
 }
+\examples{
+    load.model()
+    load.model(mtype="rf")
+    
+}

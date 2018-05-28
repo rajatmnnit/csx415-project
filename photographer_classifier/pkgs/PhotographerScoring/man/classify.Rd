@@ -15,5 +15,10 @@ classify(data, mtype = "gbm")
 a data frame of the format [member_guid, class], where "class" is the predicted class from model for the corresponding member_guid.
 }
 \description{
-Classify new customers as "PHOTOGRAPHERS" or "OTHERS" by scorin against a pre-trained persistent binary classification model.
+Classify new customers as "PHOTOGRAPHERS" or "OTHERS" by scoring against a pre-trained persistent binary classification model.
+}
+\examples{
+    classify(new.data)
+    classify(new.data, mtype="rf")
+    
 }
