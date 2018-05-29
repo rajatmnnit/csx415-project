@@ -1,1 +1,1 @@
-Here you'll store your raw data files. If they are encoded in a supported file format, they'll automatically be loaded when you call `load.project()`.
+The data used for this project is confidential and can not be shared on git. Please refer to the sample (cooked) data in app/test_data directory for running the code.
