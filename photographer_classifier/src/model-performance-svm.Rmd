@@ -1,5 +1,5 @@
 ---
-title: "Support Vector Model"
+title: "Support Vector Machine"
 author: 'Author: Rajat Jain'
 date: 'Last Updated: `r Sys.Date()`'
 output:
@@ -25,6 +25,7 @@ library(ProjectTemplate)
 load.project()
 
 library(caret)
+library(e1071)
 library(pROC)
 
 # setup the doParallel
@@ -48,16 +49,17 @@ set.seed(123)
 
 
 ## Training - SVM Model
-Caret is Awesome!
+Caret is Awesome! So using caret to train the model.
 ```{r model}
 fit <- train(class ~ lr_cc_usage + lr_cl_usage + storage_usage + ps_usage + stock_usage,
              data=usage.data, method = "svmLinear", trControl = ctrl)
 ```
 
-Summarize trained model.
+### Summary of the trained Model
 ```{r modelsummary, echo=FALSE}
 fit
 ```
+
 
 ```{r modelsave, echo=FALSE}
 # Save model object for future use.

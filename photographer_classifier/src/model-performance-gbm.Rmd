@@ -1,5 +1,5 @@
 ---
-title: "Gradient Boosted Model"
+title: "Gradient Boosting Machine"
 author: 'Author: Rajat Jain'
 date: 'Last Updated: `r Sys.Date()`'
 output:
@@ -25,6 +25,7 @@ library(ProjectTemplate)
 load.project()
 
 library(caret)
+library(gbm)
 library(pROC)
 
 # setup the doParallel
@@ -47,16 +48,21 @@ set.seed(123)
 ```
 
 
-## Training - Gradient Boosted Tree Model
-Caret is Awesome!
+## Training - GBM Model
+Caret is Awesome! So using caret to train the model.
 ```{r model}
 fit <- train(class ~ lr_cc_usage + lr_cl_usage + storage_usage + ps_usage + stock_usage,
              data=usage.data, method = "gbm", trControl = ctrl)
 ```
 
-Summarize trained model.
+### Summary of the trained Model
 ```{r modelsummary, echo=FALSE}
 fit
+```
+
+### Variable Importance
+```{r varimp, echo=FALSE}
+plot(varImp(fit))
 ```
 
 ```{r modelsave, echo=FALSE}
