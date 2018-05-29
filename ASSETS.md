@@ -12,18 +12,18 @@
 ## Performance Reports:
  Asset # | Asset Name | Location |
 --- | --- | --- 
-1 | Linear Model | https://github.com/rajatmnnit/csx415-project/blob/master/photographer_classifier/reports/model-performance-linear.pdf |
-2 | Tree Model | https://github.com/rajatmnnit/csx415-project/blob/master/photographer_classifier/reports/model-performance-rpart.pdf |
-3 | Random Forest Model | https://github.com/rajatmnnit/csx415-project/blob/master/photographer_classifier/pkgs/PhotographerModels/inst/model-performance-rf.pdf |
-4 | Support Vector Machine | https://github.com/rajatmnnit/csx415-project/blob/master/photographer_classifier/pkgs/PhotographerModels/inst/model-performance-svm.pdf |
-5 | Gradient Boosting Machine | https://github.com/rajatmnnit/csx415-project/blob/master/photographer_classifier/pkgs/PhotographerModels/inst/model-performance-gbm.pdf |
+1 | Gradient Boosting Machine | https://github.com/rajatmnnit/csx415-project/blob/master/photographer_classifier/pkgs/PhotographerModels/inst/model-performance-gbm.pdf |
+2 | Random Forest Model | https://github.com/rajatmnnit/csx415-project/blob/master/photographer_classifier/pkgs/PhotographerModels/inst/model-performance-rf.pdf |
+3 | Support Vector Machine | https://github.com/rajatmnnit/csx415-project/blob/master/photographer_classifier/pkgs/PhotographerModels/inst/model-performance-svm.pdf |
+4 | Tree Model | https://github.com/rajatmnnit/csx415-project/blob/master/photographer_classifier/reports/model-performance-rpart.pdf |
+5 | Linear Model | https://github.com/rajatmnnit/csx415-project/blob/master/photographer_classifier/reports/model-performance-linear.pdf |
 
 
 ## Development & Build Resources:
  Asset # | Asset Name | Location |
 --- | --- | --- 
 1 | Source Code | https://github.com/rajatmnnit/csx415-project/blob/master/photographer_classifier/src/ |
-2 | Build Instructions | Coming Soon |
+2 | Data Scientist Instructions | https://github.com/rajatmnnit/csx415-project/blob/master/photographer_classifier/README.md |
 
 
 ## Deployment Resources:
