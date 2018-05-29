@@ -33,14 +33,14 @@ Requires: Rcpp
 
 Package: PhotographerModels
 Source: source
-Version: 0.1.0
-Hash: ba8664ef8b48188163bac054d20090fa
+Version: 0.1.1
+Hash: a1291ec2f8704ed899f50069ed59f293
 SourcePath: ./pkgs/PhotographerModels
 
 Package: PhotographerScoring
 Source: source
-Version: 0.1.0
-Hash: 53e4b677304845ed10b387a09340eee2
+Version: 0.1.1
+Hash: de4222f8cb39fa93e33079df49a23b46
 SourcePath: ./pkgs/PhotographerScoring
 
 Package: ProjectTemplate
@@ -105,6 +105,11 @@ Version: 0.2
 Hash: b0f06c9a05938f13d119c8e93616dddd
 Requires: Rcpp, bindr, plogr
 
+Package: bitops
+Source: CRAN
+Version: 1.0-6
+Hash: 67d0775189fd0041d95abca618c5c07e
+
 Package: brew
 Source: CRAN
 Version: 1.0-6
@@ -115,6 +120,12 @@ Source: CRAN
 Version: 0.4.3
 Hash: e796a434d80c7358cb3eb5acb142fb45
 Requires: dplyr, plyr, psych, reshape2, stringr, tidyr
+
+Package: caTools
+Source: CRAN
+Version: 1.17.1
+Hash: 97cb6f6293cd18d17df77a6383cc6763
+Requires: bitops
 
 Package: caret
 Source: CRAN
@@ -196,6 +207,11 @@ Version: 0.7.4
 Hash: 2adb5f27868b71162128076e44a2a577
 Requires: BH, R6, Rcpp, assertthat, bindrcpp, glue, magrittr,
     pkgconfig, plogr, rlang, tibble
+
+Package: e1071
+Source: CRAN
+Version: 1.6-8
+Hash: 20320ec66d4dc608654769145b7c624a
 
 Package: evaluate
 Source: CRAN
