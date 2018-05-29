@@ -4,7 +4,7 @@
 ## Documents:
  Asset # | Asset Name | Location |
 --- | --- | --- 
-1 | Formal Problem Statement | https://github.com/rajatmnnit/csx415-project/blob/master/photographer_classifier/docs/data_description.pdf |
+1 | Formal Problem Statement | https://github.com/rajatmnnit/csx415-project/blob/master/photographer_classifier/docs/FPS.pdf |
 2 | Data Description Document | https://github.com/rajatmnnit/csx415-project/blob/master/photographer_classifier/docs/data_description.pdf |
 3 | Predictor Analyses Document | https://github.com/rajatmnnit/csx415-project/blob/master/photographer_classifier/docs/predictor_analyses.pdf |
 
@@ -22,8 +22,12 @@
 ## Development & Build Resources:
  Asset # | Asset Name | Location |
 --- | --- | --- 
+1 | Source Code | https://github.com/rajatmnnit/csx415-project/blob/master/photographer_classifier/src/ |
+2 | Build Instructions | Coming Soon |
 
 
 ## Deployment Resources:
  Asset # | Asset Name | Location |
 --- | --- | --- 
+1 | Deployment Insturctions | https://github.com/rajatmnnit/csx415-project/blob/master/photographer_classifier/deploy/README.md |
+2 | Deployment Bundle(s) | Coming Soon |
