@@ -22,9 +22,9 @@ option_list <- list(
   make_option("--no-header", action="store_true", default=FALSE,
               help="Use this option if the input file does not contain header. Order of features must be maintained."),
   make_option("--model-id", type="character", default=NULL,
-              help="Select model to use for scoring [default \"gbm\"]. Can be used to A/B test or switch out models in Production easily."),
+              help="Select model to use for scoring [value: gbm|rf|svm], [default: gbm]. Can be used to A/B test or switch out models in Production easily."),
   make_option(c("-v", "--verbose"), action="store_true", default=FALSE,
-              help="Print extra output which could be helpful in debuging [default \"%default\"]")
+              help="Print extra output which could be helpful in debuging [default: %default]")
 )
 
 # Get command line options, if help option encountered print help and exit. Otherwise if options not found on command line then set defaults.
