@@ -1,7 +1,7 @@
 Package: PhotographerScoring
 Type: Package
 Title: Scoring function(s) for Photographer binary classification.
-Version: 0.1.0
+Version: 0.1.1
 Author: Rajat Jain <mnnitrajat@gmail.com>
 Maintainer: Rajat Jain <mnnitrajat@gmail.com>
 Description: This package scores new data based on various trained models for "Photographer" class binary classification of Adobe Creative Cloud customers.
