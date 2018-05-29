@@ -30,7 +30,7 @@ This file contains deployment and running instructions for Project photographer_
   - "/Users/rajatj/Downloads/photographer_classifier"
   ```
 
-3.    If you see the success message as above, you are all set!
+3.    If you see the success message mentioned above, you are all set!
 4.    If you see packrat errors like
 
   ```
@@ -53,11 +53,12 @@ If you are unbundelling in a clean installation, you should not see any of these
 
 ### Mac
 
-1.    Go to the directory where you extracted the package contents. A few test data sets have been provided to test-run the application under tests/data directory.
-2.    **Run the app** - by using the command `app/photographer_classifier.R` from this directory. The app requires a few mandatory arguments. Run it with --help option to find more. Example:
+1.    **Go to the directory** where you extracted the package contents. __Do not run it from any other directory__.
+2.    A few test data sets have been provided to test-run the application under [tests/data](https://github.com/rajatmnnit/csx415-project/tree/master/photographer_classifier/tests/data) directory.
+3.    **Run the app** - by using the command `app/photographer_classifier.R` from this directory. The app requires a few mandatory arguments. Run it with --help option to find more. Example:
 
   ```
-  rajatjs-MacBook-Pro:photographer_classifier rajatj$ app/photographer_classifier.R --help
+  $ app/photographer_classifier.R --help
   Usage: app/photographer_classifier.R [options]
   
   
@@ -82,10 +83,10 @@ If you are unbundelling in a clean installation, you should not see any of these
   
   ```
 
-3.    **Input File** - All the data points to be scored must be written to a CSV file and passed as argument with option -i. Example:
+4.    **Input File** - All the data points to be scored must be written to a CSV file and passed as argument with option -i. Example:
 
   ```
-  rajatjs-MacBook-Pro:photographer_classifier rajatj$ app/photographer_classifier.R -i tests/data/test_data.csv 
+  $ app/photographer_classifier.R -i tests/data/test_data.csv 
   [1] "Output:"
   "member_guid" "class"
   "U001" "OTHER"
@@ -98,10 +99,10 @@ If you are unbundelling in a clean installation, you should not see any of these
 
 In this case, the optput is generated on the console.
 
-4.    **Order of columns** - inside CSV file does not matter as long as the headers are correct. Example:
+5.    **Order of columns** - inside CSV file does not matter as long as the headers are correct. Example:
 
   ```
-  rajatjs-MacBook-Pro:photographer_classifier rajatj$ app/photographer_classifier.R -i tests/data/test_data_reordered.csv 
+  $ app/photographer_classifier.R -i tests/data/test_data_reordered.csv 
   [1] "Output:"
   "member_guid" "class"
   "U001" "OTHER"
@@ -112,10 +113,10 @@ In this case, the optput is generated on the console.
   "U006" "PHOTOGRAPHER"
   ```
 
-5.    **Missing Header** - If the header in the input file is missing, use --no-header option. However, if this case the order has to be strictly this: member_guid,lr_cc_usage,lr_cl_usage,lr_mo_usage,storage_usage,ps_usage,stock_usage. Example:
+6.    **Missing Header** - If the header in the input file is missing, use --no-header option. However, if this case the order has to be strictly this: member_guid,lr_cc_usage,lr_cl_usage,lr_mo_usage,storage_usage,ps_usage,stock_usage. Example:
 
   ```
-  rajatjs-MacBook-Pro:photographer_classifier rajatj$ app/photographer_classifier.R -i tests/data/test_data_noheader.csv --no-header
+  $ app/photographer_classifier.R -i tests/data/test_data_noheader.csv --no-header
   [1] "Output:"
   "member_guid" "class"
   "U001" "OTHER"
@@ -126,13 +127,13 @@ In this case, the optput is generated on the console.
   "U006" "PHOTOGRAPHER"
   ```
 
-6.    **Output File** - Output from the app can be written to a CSV output file by providing -o option. Example:
+7.    **Output File** - Output from the app can be written to a CSV output file by providing -o option. Example:
 
   ```
-  rajatjs-MacBook-Pro:photographer_classifier rajatj$ app/photographer_classifier.R -i tests/data/test_data.csv -o tests/output.csv
+  $ app/photographer_classifier.R -i tests/data/test_data.csv -o tests/output.csv
   [1] "6 records written to tests/output.csv"
 
-  rajatjs-MacBook-Pro:photographer_classifier rajatj$ cat tests/output.csv 
+  $ cat tests/output.csv 
   "member_guid","class"
   "U001","OTHER"
   "U002","OTHER"
@@ -142,17 +143,17 @@ In this case, the optput is generated on the console.
   "U006","PHOTOGRAPHER"
   ```
 
-7.    **Overriding Model** - You can also override the default model at the runtime by providing the --model-id option. This can be very useful for running A/B tests using two fifferent kind of models. Example:
+8.    **Overriding Model** - You can also override the default model at the runtime by providing the --model-id option. This can be very useful for running A/B tests using two fifferent kind of models. Example:
 
   ```
-  rajatjs-MacBook-Pro:photographer_classifier rajatj$ app/photographer_classifier.R -i tests/data/test_data_A.csv 
+  $ app/photographer_classifier.R -i tests/data/test_data_A.csv 
   [1] "Output:"
   "member_guid" "class"
   "U001" "OTHER"
   "U003" "OTHER"
   "U005" "OTHER"
 
-  rajatjs-MacBook-Pro:photographer_classifier rajatj$ app/photographer_classifier.R -i tests/data/test_data_B.csv --model-id=rf
+  $ app/photographer_classifier.R -i tests/data/test_data_B.csv --model-id=rf
   [1] "Output:"
   "member_guid" "class"
   "U002" "OTHER"
