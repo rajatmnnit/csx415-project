@@ -33,4 +33,4 @@ All the important resources for the project including Formal Problem Statement, 
 
 ### Next Steps
 
-We have also discussed the end state and next steps for this project under the file [NEXTSTEPS.md](https://github.com/rajatmnnit/csx415-project/blob/master/ASSETS.md). Please refer to it for more details.
+We have also discussed the end state and next steps for this project under the file [NEXTSTEPS.md](https://github.com/rajatmnnit/csx415-project/blob/master/NEXTSTEPS.md). Please refer to it for more details.
